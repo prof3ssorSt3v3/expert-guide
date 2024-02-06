@@ -17,25 +17,25 @@ function sendMessage() {
 }
 function receiveMessage(ev) {
   let msg = ev.data;
-  if ('fname' in msg) {
+  if ('fname' in msg && 'cls' in msg) {
     if (typeof eval(msg['fname']) === 'function') {
-      eval(msg['fname'])();
+      eval(msg['fname'])(msg['cls']);
     }
   }
 }
 
-function steve() {
+function steve(cls) {
   let p = document.querySelector('main').lastElementChild;
-  p.className = 'red';
+  p.className = cls ? cls : 'red';
   p.textContent = 'JavaScript';
 }
-function tony() {
+function tony(cls) {
   let p = document.querySelector('main').lastElementChild;
-  p.className = 'green';
+  p.className = cls ? cls : 'green';
   p.textContent = 'Increment C';
 }
-function tim() {
+function tim(cls) {
   let p = document.querySelector('main').lastElementChild;
-  p.className = 'blue';
+  p.className = cls ? cls : 'blue';
   p.textContent = 'Node & Express';
 }

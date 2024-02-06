@@ -6,10 +6,12 @@ self.addEventListener('message', (ev) => {
 });
 
 function sendMessage(name, clientid) {
+  let classes = ['red', 'green', 'blue'];
+  let cls = classes[Math.floor(Math.random() * classes.length)];
   self.clients.matchAll().then((clients) => {
     clients.forEach((client) => {
       if (client.id !== clientid) {
-        client.postMessage({ fname: name });
+        client.postMessage({ fname: name, cls: cls });
       }
     });
   });
